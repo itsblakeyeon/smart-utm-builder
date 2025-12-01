@@ -18,6 +18,8 @@ function UTMTableInput({
   isEditing,
   isCellSelected,
   onCellClick,
+  onCompositionStart,
+  onCompositionEnd,
 }) {
   const divRef = useRef(null);
 
@@ -63,6 +65,8 @@ function UTMTableInput({
       onChange={(e) => onChange(rowId, field, e.target.value)}
       onFocus={() => onFocus(field, rowIndex)}
       onKeyDown={(e) => onKeyDown(e, rowIndex, field)}
+      onCompositionStart={onCompositionStart}
+      onCompositionEnd={onCompositionEnd}
       data-row-index={rowIndex}
       data-field={field}
       placeholder={placeholder}

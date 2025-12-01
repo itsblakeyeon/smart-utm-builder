@@ -18,6 +18,8 @@ function UTMTableRow({
   onInputFocus,
   onKeyDown,
   onCellSelectionKeyDown,
+  onCompositionStart,
+  onCompositionEnd,
   onCopyUrl,
   onDeleteRow,
   onRowSelectionKeyDown,
@@ -129,6 +131,8 @@ function UTMTableRow({
                     ? (e) => onCellSelectionKeyDown(e, index, field.key)  // 셀 선택 모드
                     : onKeyDown  // 기본
               }
+              onCompositionStart={onCompositionStart}
+              onCompositionEnd={onCompositionEnd}
               isEditing={isEditing}
               isCellSelected={isCellSelected}
               onCellClick={onCellClick}
