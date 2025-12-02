@@ -6,6 +6,9 @@
 
 다크 테마의 UTM URL 생성기입니다. 마케팅 캠페인 추적을 위한 UTM 파라미터를 쉽고 빠르게 만들 수 있습니다.
 
+- 🌐 **라이브 데모**: [utm-builder.vercel.app](https://utm-builder.vercel.app)
+- 📊 **Google Analytics 추적 활성화**
+
 ## 🎯 학습 프로젝트
 
 이 프로젝트는 React, Vite, Tailwind CSS를 배우면서 진행하는 학습 프로젝트입니다.
@@ -46,8 +49,8 @@
 
 ```bash
 # 저장소 클론
-git clone https://github.com/itsblakeyeon/smartUtmBuilder.git
-cd smartUtmBuilder
+git clone https://github.com/itsblakeyeon/utm-builder.git
+cd utm-builder
 
 # 의존성 설치
 npm install
