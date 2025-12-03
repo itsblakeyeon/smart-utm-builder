@@ -149,6 +149,72 @@ export const useKeyboardNavigation = (
       return;
     }
 
+    // Shift + 방향키: 편집 모드 → 셀 범위 선택 시작
+    if (
+      e.shiftKey &&
+      !e.metaKey &&
+      !e.ctrlKey &&
+      ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)
+    ) {
+      // 텍스트 선택 중이면서 아직 끝에 도달하지 않았으면 브라우저 기본 동작 허용
+      const hasSelection = input.selectionStart !== input.selectionEnd;
+      if (hasSelection) {
+        // 텍스트 선택이 맨 끝/맨 앞에 도달하지 않았으면 계속 텍스트 선택
+        if (e.key === "ArrowLeft" && !cursorAtStart) {
+          return;
+        }
+        if (e.key === "ArrowRight" && !cursorAtEnd) {
+          return;
+        }
+        // 맨 끝/맨 앞에 도달했으면 셀 범위 선택으로 전환
+      }
+
+      // ArrowUp/Down: 항상 셀 범위 선택 시작
+      // ArrowLeft/Right: 커서가 맨 처음/마지막일 때만 셀 범위 선택 시작
+      if (e.key === "ArrowLeft" && !cursorAtStart) {
+        return;
+      }
+      if (e.key === "ArrowRight" && !cursorAtEnd) {
+        return;
+      }
+
+      e.preventDefault();
+
+      // 1. 편집 모드 → 셀 선택 모드 전환
+      setEditingCell(null);
+
+      // 2. 범위 선택 시작점 = 현재 셀
+      const startCell = { rowIndex, field };
+      let endCell = { ...startCell };
+
+      // 3. 방향에 따라 끝점 계산
+      if (e.key === "ArrowUp") {
+        endCell = { rowIndex: Math.max(0, rowIndex - 1), field };
+      } else if (e.key === "ArrowDown") {
+        endCell = { rowIndex: Math.min(rows.length - 1, rowIndex + 1), field };
+      } else if (e.key === "ArrowLeft") {
+        const currentFieldIndex = fields.indexOf(field);
+        if (currentFieldIndex > 0) {
+          endCell = { rowIndex, field: fields[currentFieldIndex - 1] };
+        }
+      } else if (e.key === "ArrowRight") {
+        const currentFieldIndex = fields.indexOf(field);
+        if (currentFieldIndex < fields.length - 1) {
+          endCell = { rowIndex, field: fields[currentFieldIndex + 1] };
+        }
+      }
+
+      // 4. 범위 선택 상태 설정
+      setSelectedCellRange({ start: startCell, end: endCell });
+      setSelectedCell(endCell);
+
+      // 5. 행 선택 모드 해제
+      setSelectedRowIndex(null);
+      setSelectedRange(null);
+
+      return;
+    }
+
     // Cmd/Ctrl + C: 행 복사 (일반 텍스트 복사는 허용하지 않음)
     // input 필드에서 텍스트 선택 중이면 기본 동작 허용
     if ((e.metaKey || e.ctrlKey) && e.key === "c") {

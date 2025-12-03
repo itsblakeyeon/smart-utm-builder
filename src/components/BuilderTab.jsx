@@ -191,14 +191,8 @@ function BuilderTab({ onSave }) {
 
   return (
     <div className="max-w-full mx-auto p-6">
-      {/* 행 추가 버튼 */}
+      {/* 컨트롤 버튼들 */}
       <div className="mb-4 flex gap-3">
-        <button
-          onClick={addRow}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-medium transition duration-200"
-        >
-          + 행 추가
-        </button>
         <button
           onClick={handleReset}
           className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-medium transition duration-200"
@@ -252,6 +246,28 @@ function BuilderTab({ onSave }) {
             ))}
           </tbody>
         </table>
+
+        {/* Notion 스타일 행 추가 버튼 */}
+        <button
+          onClick={addRow}
+          className="w-full mt-2 py-2 text-gray-400 hover:bg-[#1a2642] hover:text-gray-300 transition-colors duration-150 rounded flex items-center justify-center"
+          aria-label="행 추가"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+        </button>
       </div>
 
       {/* 토스트 알림 */}
