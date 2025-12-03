@@ -147,14 +147,22 @@ function BuilderTab({ onSave }) {
       })
       .filter(Boolean);
 
-    if (savedItems.length > 0) {
-      onSave(savedItems);
-      showToast(`${savedItems.length}개 항목이 저장되었습니다!`, "success");
+    if (savedItems.length === 0) {
+      showToast("URL이 없는 항목은 저장할 수 없습니다!", "warning");
+      return;
+    }
 
-      // 저장 후 선택 해제
-      setRows((prevRows) =>
-        prevRows.map((row) => ({ ...row, selected: false }))
+    onSave(savedItems);
+
+    // 일부만 저장된 경우 알림
+    if (savedItems.length < selectedRows.length) {
+      const skippedCount = selectedRows.length - savedItems.length;
+      showToast(
+        `${savedItems.length}개 항목이 저장되었습니다. (${skippedCount}개 항목은 URL이 없어 제외됨)`,
+        "success"
       );
+    } else {
+      showToast(`${savedItems.length}개 항목이 저장되었습니다!`, "success");
     }
   };
 
@@ -167,6 +175,15 @@ function BuilderTab({ onSave }) {
     }
   };
 
+  // 특정 행의 URL을 새 탭에서 열기
+  const openUrlInNewTab = (row) => {
+    const url = buildUTMUrl(row);
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      showToast("새 탭에서 열었습니다!", "success");
+    }
+  };
+
   // localStorage에 자동 저장 (디바운스)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -176,18 +193,26 @@ function BuilderTab({ onSave }) {
     return () => clearTimeout(timer);
   }, [rows]);
 
-  // Cmd+Z, Cmd+Shift+Z 완전히 막기
+  // 키보드 단축키 (Cmd+Z 막기, Cmd+S 저장)
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Cmd+Z, Cmd+Shift+Z 완전히 막기
       if ((e.metaKey || e.ctrlKey) && e.key === 'z') {
         e.preventDefault();
         e.stopPropagation();
+      }
+
+      // Cmd+S: 선택 항목 저장
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        e.stopPropagation();
+        saveSelected();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown, true);
     return () => window.removeEventListener('keydown', handleKeyDown, true);
-  }, []);
+  }, [rows, onSave, showToast]);
 
   return (
     <div className="max-w-full mx-auto p-6">
@@ -239,6 +264,7 @@ function BuilderTab({ onSave }) {
                 onCompositionStart={onCompositionStart}
                 onCompositionEnd={onCompositionEnd}
                 onCopyUrl={copyUrl}
+                onTestUrl={openUrlInNewTab}
                 onDeleteRow={deleteRow}
                 onRowSelectionKeyDown={handleRowSelectionKeyDown}
                 onCellClick={handleCellClick}

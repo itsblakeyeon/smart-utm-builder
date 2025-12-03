@@ -21,6 +21,7 @@ function UTMTableRow({
   onCompositionStart,
   onCompositionEnd,
   onCopyUrl,
+  onTestUrl,
   onDeleteRow,
   onRowSelectionKeyDown,
   onCellClick,
@@ -165,6 +166,13 @@ function UTMTableRow({
             className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-2 py-1 rounded text-xs transition duration-200"
           >
             복사
+          </button>
+          <button
+            onClick={() => onTestUrl(row)}
+            disabled={!generatedUrl}
+            className="bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-2 py-1 rounded text-xs transition duration-200"
+          >
+            테스트
           </button>
           <button
             onClick={() => onDeleteRow(row.id)}
