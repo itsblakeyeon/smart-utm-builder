@@ -13,7 +13,10 @@
 
 이 프로젝트는 React, Vite, Tailwind CSS를 배우면서 진행하는 학습 프로젝트입니다.
 
-- **개발 가이드**: [CLAUDE.md](CLAUDE.md) 참고
+### Documentation
+- **Development Guide**: [CLAUDE.md](CLAUDE.md) — Project architecture and implementation guide
+- **[Quick Reference](docs/quick-reference.md)** — Quick concept lookup
+- **[Concepts Dictionary](docs/concepts-dictionary.md)** — Detailed concept explanations
 
 ## ✨ 현재 구현된 기능
 
