@@ -35,14 +35,8 @@ function SavedTableHeader({ allSelected, onToggleSelectAll }) {
         <th className="px-3 py-3 text-left text-gray-200 text-xs font-semibold border-r border-b border-white/10">
           생성된 URL
         </th>
-        <th className="px-3 py-3 text-left text-gray-200 text-xs font-semibold border-r border-b border-white/10">
+        <th className="px-3 py-3 text-left text-gray-200 text-xs font-semibold border-b border-white/10">
           코멘트
-        </th>
-        <th className="px-3 py-3 text-left text-gray-200 text-xs font-semibold border-r border-b border-white/10">
-          저장 시간
-        </th>
-        <th className="px-3 py-3 text-center text-gray-200 text-xs font-semibold border-b border-white/10">
-          액션
         </th>
       </tr>
     </thead>

@@ -151,7 +151,6 @@ function SavedTab({ savedItems, onDelete, onDeleteAll, onDeleteSelected, onUpdat
                 onSaveComment={saveComment}
                 onCancelEditComment={cancelEditComment}
                 onUpdateEditComment={updateEditComment}
-                onDelete={onDelete}
               />
             ))}
           </tbody>

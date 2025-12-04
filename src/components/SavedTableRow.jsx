@@ -12,20 +12,7 @@ function SavedTableRow({
   onSaveComment,
   onCancelEditComment,
   onUpdateEditComment,
-  onDelete,
 }) {
-  // 날짜 포맷팅
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toLocaleString("ko-KR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
   const isEditing = editingCommentId === item.id;
 
   return (
@@ -90,7 +77,7 @@ function SavedTableRow({
       </td>
 
       {/* 코멘트 */}
-      <td className="px-2 py-1 border-r border-b border-white/10">
+      <td className="px-2 py-1 border-b border-white/10">
         {isEditing ? (
           <div className="flex gap-1">
             <input
@@ -131,26 +118,6 @@ function SavedTableRow({
             {item.comment || "코멘트를 추가하려면 클릭하세요"}
           </div>
         )}
-      </td>
-
-      {/* 저장 시간 */}
-      <td className="px-2 py-1 border-r border-b border-white/10">
-        <div className="text-sm text-gray-300">
-          {formatDate(item.savedAt)}
-        </div>
-      </td>
-
-      {/* 액션 버튼 */}
-      <td className="px-2 py-1 border-b border-white/10">
-        <div className="flex gap-2 justify-center">
-          <button
-            onClick={() => onDelete(item.id)}
-            className="glass-button glass-button-red text-white px-3 py-1 rounded-lg text-sm font-medium"
-            title="삭제"
-          >
-            삭제
-          </button>
-        </div>
       </td>
     </tr>
   );

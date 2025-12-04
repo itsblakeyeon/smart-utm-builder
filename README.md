@@ -17,6 +17,7 @@
 - **Development Guide**: [CLAUDE.md](CLAUDE.md) — Project architecture and implementation guide
 - **[Quick Reference](docs/quick-reference.md)** — Quick concept lookup
 - **[Concepts Dictionary](docs/concepts-dictionary.md)** — Detailed concept explanations
+- **[Changelog](CHANGELOG.md)** — Version history and feature list
 
 ## ✨ 현재 구현된 기능
 

@@ -7,6 +7,7 @@ import { useEffect, useCallback } from "react";
 import BuilderTableHeader from "./BuilderTableHeader";
 import UTMTableRow from "./UTMTableRow";
 import Toast from "./Toast";
+import KeyboardShortcuts from "./KeyboardShortcuts";
 import { STORAGE_KEYS, DEBOUNCE_DELAY, FIELDS } from "../constants";
 
 function BuilderTab({ onSave }) {
@@ -523,6 +524,38 @@ function BuilderTab({ onSave }) {
           </svg>
         </button>
       </div>
+
+      {/* 키보드 단축키 안내 */}
+      <KeyboardShortcuts
+        shortcuts={[
+          {
+            category: "편집",
+            items: [
+              { key: "⌘/Ctrl + Z", description: "실행 취소" },
+              { key: "⌘/Ctrl + Shift + Z", description: "다시 실행" },
+              { key: "⌘/Ctrl + C", description: "행 복사" },
+              { key: "⌘/Ctrl + V", description: "행 붙여넣기" },
+            ],
+          },
+          {
+            category: "네비게이션",
+            items: [
+              { key: "← → ↑ ↓", description: "셀 이동" },
+              { key: "Enter", description: "아래 행으로 이동" },
+              { key: "ESC", description: "모드 전환" },
+            ],
+          },
+          {
+            category: "선택 및 작업",
+            items: [
+              { key: "Shift + 방향키", description: "범위 선택" },
+              { key: "Space", description: "체크박스 선택/해제" },
+              { key: "Delete", description: "선택된 행 삭제" },
+              { key: "⌘/Ctrl + S", description: "선택 항목 저장" },
+            ],
+          },
+        ]}
+      />
 
       {/* 토스트 알림 */}
       {toast && (
