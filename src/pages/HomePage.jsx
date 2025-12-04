@@ -7,13 +7,12 @@ function HomePage() {
         {/* 헤더 */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            Marketing Toolbox
+            Toolbox
           </h1>
           <p className="text-xl text-gray-200">
-            효율적인 마케팅을 위한 도구 모음
+            Toolbox for everyone
           </p>
         </div>
-
         {/* 툴 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* UTM Builder 카드 */}
@@ -25,7 +24,7 @@ function HomePage() {
               UTM Builder
             </h3>
             <p className="text-gray-200">
-              UTM 파라미터를 쉽고 빠르게 생성하고 관리하세요
+            “Easily and quickly create and manage UTM parameters.”
             </p>
           </Link>
 

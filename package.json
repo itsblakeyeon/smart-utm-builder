@@ -1,7 +1,7 @@
 {
   "name": "smartutmbuilder",
   "version": "1.0.0",
-  "description": "UTM builder for marketers",
+  "description": "UTM builder for everyone",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -67,7 +67,7 @@ function UTMBuilderPage() {
           </Link>
           <div className="text-center">
             <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-lg">UTM Builder</h1>
-            <p className="text-gray-300">UTM builder for marketers</p>
+            <p className="text-gray-300">UTM builder for everyone</p>
           </div>
         </div>
 
